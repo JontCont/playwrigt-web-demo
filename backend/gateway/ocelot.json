@@ -5,29 +5,33 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "localhost",
-                    "Port": 5001
+                    "Host": "127.0.0.1",
+                    "Port": 5164
                 }
             ],
             "UpstreamPathTemplate": "/api/products/{everything}",
             "UpstreamHttpMethod": [
-                "Get"
+                "Get",
+                "Post",
+                "Put",
+                "Delete"
             ]
         },
         {
-            "DownstreamPathTemplate": "/api/users/{everything}",
+            "DownstreamPathTemplate": "/api/orders/{everything}",
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "localhost",
-                    "Port": 5001
+                    "Host": "127.0.0.1",
+                    "Port": 5164
                 }
             ],
-            "UpstreamPathTemplate": "/api/users/{everything}",
+            "UpstreamPathTemplate": "/api/orders/{everything}",
             "UpstreamHttpMethod": [
                 "Get",
                 "Post",
-                "Put"
+                "Put",
+                "Delete"
             ]
         },
         {
@@ -35,8 +39,8 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "localhost",
-                    "Port": 5001
+                    "Host": "127.0.0.1",
+                    "Port": 5164
                 }
             ],
             "UpstreamPathTemplate": "/api/auth/{everything}",
@@ -45,20 +49,51 @@
             ]
         },
         {
-            "DownstreamPathTemplate": "/api/admin/{everything}",
+            "DownstreamPathTemplate": "/api/admin/products/{everything}",
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "localhost",
-                    "Port": 5002
+                    "Host": "127.0.0.1",
+                    "Port": 5078
                 }
             ],
-            "UpstreamPathTemplate": "/api/admin/{everything}",
+            "UpstreamPathTemplate": "/api/admin/products/{everything}",
             "UpstreamHttpMethod": [
                 "Get",
                 "Post",
                 "Put",
                 "Delete"
+            ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/admin/users/{everything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5078
+                }
+            ],
+            "UpstreamPathTemplate": "/api/admin/users/{everything}",
+            "UpstreamHttpMethod": [
+                "Get",
+                "Post",
+                "Put",
+                "Delete"
+            ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/admin/auth/{everything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5078
+                }
+            ],
+            "UpstreamPathTemplate": "/api/admin/auth/{everything}",
+            "UpstreamHttpMethod": [
+                "Post"
             ]
         }
     ],

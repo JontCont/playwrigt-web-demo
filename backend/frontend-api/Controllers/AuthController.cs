@@ -4,7 +4,7 @@ using PlaywrightWebDemo.Shared.DTOs;
 namespace PlaywrightWebDemo.FrontendApi.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/auth")]
 public class AuthController : ControllerBase
 {
     private readonly ILogger<AuthController> _logger;
@@ -12,6 +12,12 @@ public class AuthController : ControllerBase
     public AuthController(ILogger<AuthController> logger)
     {
         _logger = logger;
+    }
+
+    [HttpGet("test")]
+    public IActionResult Test()
+    {
+        return Ok("Auth Controller Reached");
     }
 
     [HttpPost("login")]

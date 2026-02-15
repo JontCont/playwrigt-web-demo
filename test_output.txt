@@ -1,0 +1,37 @@
+
+Running 2 tests using 2 workers
+
+[1A[2K[1/2] [chromium] › apps\frontend-e2e\src\auth.spec.ts:4:9 › Frontend Login › should display login form
+[1A[2K[2/2] [chromium] › apps\frontend-e2e\src\auth.spec.ts:21:9 › Frontend Login › should handle invalid login
+[1A[2K  1) [chromium] › apps\frontend-e2e\src\auth.spec.ts:4:9 › Frontend Login › should display login form 
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\jontc\AppData\Local\ms-playwright\chromium_headless_shell-1208\chrome-headless-shell-win64\chrome-headless-shell.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+
+[1A[2K  2) [chromium] › apps\frontend-e2e\src\auth.spec.ts:21:9 › Frontend Login › should handle invalid login 
+
+    Error: browserType.launch: Executable doesn't exist at C:\Users\jontc\AppData\Local\ms-playwright\chromium_headless_shell-1208\chrome-headless-shell-win64\chrome-headless-shell.exe
+    ╔═════════════════════════════════════════════════════════════════════════╗
+    ║ Looks like Playwright Test or Playwright was just installed or updated. ║
+    ║ Please run the following command to download new browsers:              ║
+    ║                                                                         ║
+    ║     npx playwright install                                              ║
+    ║                                                                         ║
+    ║ <3 Playwright Team                                                      ║
+    ╚═════════════════════════════════════════════════════════════════════════╝
+
+
+[1A[2K  2 failed
+    [chromium] › apps\frontend-e2e\src\auth.spec.ts:4:9 › Frontend Login › should display login form 
+    [chromium] › apps\frontend-e2e\src\auth.spec.ts:21:9 › Frontend Login › should handle invalid login 
+
+[36m  Serving HTML report at http://localhost:50281. Press Ctrl+C to quit.[39m
+Terminate batch job (Y/N)? 
