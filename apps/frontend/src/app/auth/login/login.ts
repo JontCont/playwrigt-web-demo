@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -19,7 +19,8 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private cdr: ChangeDetectorRef
   ) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
@@ -28,9 +29,7 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    console.log('onSubmit called');
     if (this.loginForm.invalid) {
-      console.log('Form invalid');
       return;
     }
 
@@ -42,10 +41,9 @@ export class LoginComponent {
         this.router.navigate(['/']);
       },
       error: (err) => {
-        console.log('Login failed callback triggered', err);
         this.error = 'Login failed. Please check your credentials.';
         this.loading = false;
-        console.error('Login error', err);
+        this.cdr.detectChanges();
       }
     });
   }

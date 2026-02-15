@@ -19,16 +19,10 @@ test.describe('Frontend Login', () => {
     });
 
     test('should handle invalid login', async ({ page }) => {
-        // Listen for console logs
-        page.on('console', msg => console.log('BROWSER LOG:', msg.text()));
-
-        console.log('Navigating to /login');
         await page.goto('/login');
-        console.log('Current URL:', page.url());
 
         await page.fill('input#username', 'invalid');
         await page.fill('input#password', 'invalid');
-        console.log('Clicking submit');
         await page.click('button[type="submit"]');
 
         await expect(page.locator('.error-message')).toBeVisible({ timeout: 10000 });

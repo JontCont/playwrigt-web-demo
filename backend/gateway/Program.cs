@@ -3,7 +3,7 @@ using Ocelot.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Configuration.AddJsonFile("ocelot.json", optional: false, reloadOnChange: true);
+builder.Configuration.AddJsonFile($"ocelot.{builder.Environment.EnvironmentName}.json", optional: false, reloadOnChange: true);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -30,7 +30,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 
 app.UseCors("AllowAll");
 

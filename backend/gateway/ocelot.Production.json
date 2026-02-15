@@ -1,0 +1,103 @@
+{
+    "Routes": [
+        {
+            "DownstreamPathTemplate": "/api/products/{everything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "frontend-api",
+                    "Port": 5001
+                }
+            ],
+            "UpstreamPathTemplate": "/api/products/{everything}",
+            "UpstreamHttpMethod": [
+                "Get",
+                "Post",
+                "Put",
+                "Delete"
+            ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/orders/{everything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "frontend-api",
+                    "Port": 5001
+                }
+            ],
+            "UpstreamPathTemplate": "/api/orders/{everything}",
+            "UpstreamHttpMethod": [
+                "Get",
+                "Post",
+                "Put",
+                "Delete"
+            ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/auth/{everything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "frontend-api",
+                    "Port": 5001
+                }
+            ],
+            "UpstreamPathTemplate": "/api/auth/{everything}",
+            "UpstreamHttpMethod": [
+                "Post"
+            ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/admin/products/{everything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "admin-api",
+                    "Port": 5002
+                }
+            ],
+            "UpstreamPathTemplate": "/api/admin/products/{everything}",
+            "UpstreamHttpMethod": [
+                "Get",
+                "Post",
+                "Put",
+                "Delete"
+            ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/admin/users/{everything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "admin-api",
+                    "Port": 5002
+                }
+            ],
+            "UpstreamPathTemplate": "/api/admin/users/{everything}",
+            "UpstreamHttpMethod": [
+                "Get",
+                "Post",
+                "Put",
+                "Delete"
+            ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/admin/auth/{everything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "admin-api",
+                    "Port": 5002
+                }
+            ],
+            "UpstreamPathTemplate": "/api/admin/auth/{everything}",
+            "UpstreamHttpMethod": [
+                "Post"
+            ]
+        }
+    ],
+    "GlobalConfiguration": {
+        "BaseUrl": "http://gateway:5000"
+    }
+}
