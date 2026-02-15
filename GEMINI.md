@@ -1,57 +1,52 @@
 # Project Overview
 
-This is an Nx-based monorepo containing multiple Angular applications and shared libraries. It leverages modern Angular features like standalone components and is set up for comprehensive testing with Vitest/Jest for unit tests and Playwright for end-to-end (E2E) tests.
+This is a full-stack monorepo featuring an Angular frontend managed by Nx and a .NET-based microservices backend. It leverages modern Angular features like standalone components and is set up for comprehensive testing with Vitest/Jest for unit tests and Playwright for end-to-end (E2E) tests. The backend consists of multiple .NET APIs and a gateway using Ocelot.
 
 ## Main Technologies
 
-- **Nx**: Monorepo management and build system.
+- **Nx**: Monorepo management for the frontend.
 - **Angular**: Frontend framework (using standalone components, SCSS, and TypeScript).
-- **TypeScript**: Primary programming language.
+- **.NET (C#)**: Backend framework for APIs and Gateway.
+- **Ocelot**: API Gateway for the backend services.
 - **Playwright**: End-to-end testing framework.
-- **Vitest & Jest**: Unit testing frameworks.
-- **ESLint**: Linting tool for code quality.
-- **Prettier**: Code formatting.
-- **SCSS**: CSS preprocessor for styling.
+- **Vitest & Jest**: Unit testing frameworks for frontend and shared libraries.
+- **ESLint & Prettier**: Code quality and formatting.
 
 ## Project Structure
 
-- `apps/`: Contains application-specific code.
+- `apps/`: Contains Angular applications.
   - `admin/`: Admin dashboard application.
   - `admin-e2e/`: Playwright E2E tests for the admin application.
   - `frontend/`: Public-facing frontend application.
   - `frontend-e2e/`: Playwright E2E tests for the frontend application.
-- `libs/`: Contains shared libraries and utilities.
+- `backend/`: Contains .NET microservices and shared projects.
+  - `gateway/`: Ocelot API Gateway (entry point for all API requests).
+  - `admin-api/`: Backend service specifically for the admin application.
+  - `frontend-api/`: Backend service for the public-facing frontend application (handling products, users, and auth).
+  - `shared/`: Shared .NET class library containing common DTOs and models.
+- `libs/`: Contains shared frontend libraries and utilities.
   - `shared/utils/`: Common utility functions and shared logic.
 
 ## Building and Running
 
-All commands should be executed from the root of the workspace using `npx nx`.
+### Frontend (Nx)
 
-### Development
+All frontend commands should be executed from the root of the workspace using `npx nx`.
 
 - **Serve Admin App**: `npx nx serve admin`
 - **Serve Frontend App**: `npx nx serve frontend`
-
-### Building
-
-- **Build Admin App**: `npx nx build admin`
-- **Build Frontend App**: `npx nx build frontend`
 - **Build All**: `npx nx run-many -t build`
+- **E2E Tests**: `npx nx e2e <e2e-project-name>`
 
-### Testing
+### Backend (.NET)
 
-- **Unit Tests**: `npx nx test <project-name>` (e.g., `npx nx test admin` or `npx nx test utils`)
-- **E2E Tests**: `npx nx e2e <e2e-project-name>` (e.g., `npx nx e2e admin-e2e`)
+Backend services are currently managed independently of the Nx workspace and can be run using the .NET CLI from their respective directories.
 
-### Linting and Formatting
+- **Run Gateway**: `cd backend/gateway && dotnet run`
+- **Run Admin API**: `cd backend/admin-api && dotnet run`
+- **Run Frontend API**: `cd backend/frontend-api && dotnet run`
 
-- **Lint**: `npx nx lint <project-name>`
-- **Format Check**: `npx prettier . --check`
-- **Format Fix**: `npx prettier . --write`
-
-### Workspace Visualization
-
-- **Project Graph**: `npx nx graph`
+> **Note**: Future integration into the Nx graph is possible by adding `project.json` files to the backend directories, enabling unified task running (e.g., `nx run-many -t serve`).
 
 ## Development Conventions
 
