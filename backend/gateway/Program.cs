@@ -35,4 +35,7 @@ if (app.Environment.IsDevelopment())
 app.UseCors("AllowAll");
 
 app.UseAuthorization();
+
+await app.UseOcelot();
+
 app.Run();

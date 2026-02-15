@@ -5,8 +5,8 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "127.0.0.1",
-                    "Port": 5164
+                    "Host": "frontend-api",
+                    "Port": 5001
                 }
             ],
             "UpstreamPathTemplate": "/api/products/{everything}",
@@ -22,8 +22,8 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "127.0.0.1",
-                    "Port": 5164
+                    "Host": "frontend-api",
+                    "Port": 5001
                 }
             ],
             "UpstreamPathTemplate": "/api/orders/{everything}",
@@ -39,8 +39,8 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "127.0.0.1",
-                    "Port": 5164
+                    "Host": "frontend-api",
+                    "Port": 5001
                 }
             ],
             "UpstreamPathTemplate": "/api/auth/{everything}",
@@ -53,8 +53,8 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "127.0.0.1",
-                    "Port": 5078
+                    "Host": "admin-api",
+                    "Port": 5002
                 }
             ],
             "UpstreamPathTemplate": "/api/admin/products/{everything}",
@@ -70,8 +70,8 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "127.0.0.1",
-                    "Port": 5078
+                    "Host": "admin-api",
+                    "Port": 5002
                 }
             ],
             "UpstreamPathTemplate": "/api/admin/users/{everything}",
@@ -87,8 +87,8 @@
             "DownstreamScheme": "http",
             "DownstreamHostAndPorts": [
                 {
-                    "Host": "127.0.0.1",
-                    "Port": 5078
+                    "Host": "admin-api",
+                    "Port": 5002
                 }
             ],
             "UpstreamPathTemplate": "/api/admin/auth/{everything}",

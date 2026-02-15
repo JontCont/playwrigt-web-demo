@@ -1,0 +1,30 @@
+# .dockerignore
+## NodeJS
+node_modules
+dist
+.angular
+.nx
+npm-debug.log
+
+## .NET
+bin/
+obj/
+.vs/
+*.user
+*.pdb
+
+## Docker
+.dockerignore
+docker-compose.yml
+docker-compose.*.yml
+
+## Git
+.git
+.gitignore
+
+## IDE
+.vscode
+.idea
+
+## Other
+test_output*.txt
