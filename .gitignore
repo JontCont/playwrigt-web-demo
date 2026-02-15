@@ -1,0 +1,52 @@
+# Dependencies
+node_modules/
+
+# Nx
+.nx/cache
+.nx/workspace-data
+
+# Build outputs
+dist/
+tmp/
+out- romance/
+
+# Angular
+.angular/
+
+# Unit Testing
+coverage/
+vitest.config.*.timestamp*
+
+# End-to-End Testing (Playwright)
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# IDEs and Editors
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/tasks.json
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+.angular
