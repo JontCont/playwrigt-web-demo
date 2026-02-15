@@ -1,0 +1,85 @@
+version: '3.8'
+
+services:
+  # Angular Frontend Application
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    ports:
+      - "4200:80"
+    environment:
+      - API_URL=http://localhost:5000
+    depends_on:
+      - gateway
+
+  # Angular Admin Application
+  admin:
+    build:
+      context: .
+      dockerfile: Dockerfile.admin
+    ports:
+      - "4201:80"
+    environment:
+      - API_URL=http://localhost:5000
+    depends_on:
+      - gateway
+
+  # API Gateway (統一入口)
+  gateway:
+    build:
+      context: ./backend
+      dockerfile: gateway/Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:5000
+      - FrontendApiUrl=http://frontend-api:5001
+      - AdminApiUrl=http://admin-api:5002
+    depends_on:
+      - frontend-api
+      - admin-api
+
+  # Frontend API Service
+  frontend-api:
+    build:
+      context: ./backend
+      dockerfile: frontend-api/Dockerfile
+    ports:
+      - "5001:5001"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:5001
+      - ConnectionStrings__DefaultConnection=Host=db;Database=playwrightdemo;Username=postgres;Password=postgres
+    depends_on:
+      - db
+
+  # Admin API Service
+  admin-api:
+    build:
+      context: ./backend
+      dockerfile: admin-api/Dockerfile
+    ports:
+      - "5002:5002"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:5002
+      - ConnectionStrings__DefaultConnection=Host=db;Database=playwrightdemo;Username=postgres;Password=postgres
+    depends_on:
+      - db
+
+  # PostgreSQL Database
+  db:
+    image: postgres:16-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=playwrightdemo
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

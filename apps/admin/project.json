@@ -8,7 +8,9 @@
   "targets": {
     "build": {
       "executor": "@angular/build:application",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/admin",
         "browser": "apps/admin/src/main.ts",
@@ -20,7 +22,9 @@
             "input": "apps/admin/public"
           }
         ],
-        "styles": ["apps/admin/src/styles.scss"]
+        "styles": [
+          "apps/admin/src/styles.scss"
+        ]
       },
       "configurations": {
         "production": {
@@ -51,10 +55,12 @@
       "executor": "@angular/build:dev-server",
       "configurations": {
         "production": {
-          "buildTarget": "admin:build:production"
+          "buildTarget": "admin:build:production",
+          "hmr": false
         },
         "development": {
-          "buildTarget": "admin:build:development"
+          "buildTarget": "admin:build:development",
+          "proxyConfig": "apps/admin/proxy.conf.json"
         }
       },
       "defaultConfiguration": "development"
