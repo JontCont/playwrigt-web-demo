@@ -81,5 +81,87 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+  # Redis - Dapr Pub/Sub Broker
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  # Seq - Centralized Logging
+  seq:
+    image: datalust/seq:latest
+    ports:
+      - "5341:80"
+    environment:
+      - ACCEPT_EULA=Y
+
+  # order-api (Publisher)
+  order-api:
+    build:
+      context: ./backend
+      dockerfile: order-api/Dockerfile
+    ports:
+      - "5003:5003"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5003
+      - SEQ_URL=http://seq:80
+    depends_on:
+      - redis
+      - seq
+
+  # order-api Dapr Sidecar
+  order-api-dapr:
+    image: "daprio/daprd:latest"
+    command:
+      [
+        "./daprd",
+        "--app-id", "order-api",
+        "--app-port", "5003",
+        "--dapr-http-port", "3500",
+        "--dapr-grpc-port", "50001",
+        "--resources-path", "/components"
+      ]
+    volumes:
+      - ./backend/dapr/components:/components
+    depends_on:
+      - order-api
+      - redis
+    network_mode: "service:order-api"
+
+  # notification-api (Subscriber)
+  notification-api:
+    build:
+      context: ./backend
+      dockerfile: notification-api/Dockerfile
+    ports:
+      - "5004:5004"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5004
+      - SEQ_URL=http://seq:80
+    depends_on:
+      - redis
+      - seq
+
+  # notification-api Dapr Sidecar
+  notification-api-dapr:
+    image: "daprio/daprd:latest"
+    command:
+      [
+        "./daprd",
+        "--app-id", "notification-api",
+        "--app-port", "5004",
+        "--dapr-http-port", "3501",
+        "--dapr-grpc-port", "50002",
+        "--resources-path", "/components"
+      ]
+    volumes:
+      - ./backend/dapr/components:/components
+    depends_on:
+      - notification-api
+      - redis
+    network_mode: "service:notification-api"
+
 volumes:
   postgres_data:
